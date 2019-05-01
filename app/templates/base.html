@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% if title %}
+		<title>{{ title }}</title>
+	{% else %}
+		<title>SearchComp</title>	
+	{% endif %}
+
+	 <!-- Required meta tags for bootstrap-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+	<h1 class="text-center">SearchComp</h1>
+	<p class="text-center"> Search Companies by their Mission </p>
+	<div class="container col-sm-3 text-center">
+		{% block content %}
+		{% endblock %}
+	</div>
+</body>
+</html>
