@@ -16,7 +16,16 @@ class User(UserMixin, db.Model):
 	def check_password(self,password):
 		return check_password_hash(self.hashed_password,password)
 
-
+	def save(self):
+		if self.hashed_password is None:
+			raise Exception("Password not set")
+		db.session.add(self)
+		db.session.commit()
+	
+	def delete(self):
+		db.session.delete(self)
+		return
+	
 @login_manager.user_loader
 def load_user(id):
 	return User.query.get(int(id))

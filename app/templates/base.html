@@ -34,14 +34,6 @@
 		{% block content %}
 		{% endblock %}
 	</div>
-	<div class="container text-center">
-		{% if current_user.is_authenticated %}
-		To <a href="{{url_for('logout')}}">Logout</a>
-		
-		{% else %}
-		To <a href="{{url_for('login')}}">Login</a>
-		{%endif%}
-	</div>
 
 </body>
 </html>
