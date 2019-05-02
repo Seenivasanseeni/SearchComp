@@ -2,11 +2,11 @@
 
 {% block content %}
   <h1 class="text-center"> User Login </h1>
-<form method="post" class="container col-sm-3 text-center">
+<form method="post" class="container col-sm-3 text-center" novalidate="">
 
 	{{ form.hidden_tag() }}
  <div class="form-group">
-    <label for="usernaname">Username</label>
+    <label for="username">Username</label>
     {{ form.username(class='form-control',placeholder="Enter username")}}
     {% for error in form.username.errors %}
     <div class=" w-25 alert alert-danger">{{error}}</div>

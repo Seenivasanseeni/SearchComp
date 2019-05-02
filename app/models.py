@@ -25,7 +25,26 @@ class User(UserMixin, db.Model):
 	def delete(self):
 		db.session.delete(self)
 		return
-	
+
+class Organization(db.Model):
+	id = db.Column(db.Integer,primary_key=True)
+	name = db.Column(db.String(64),index=True)
+	website = db.Column(db.String(128))
+	mission = db.Column(db.String(512))
+	#to be added technoloifes
+
+	def __repr__(self):
+		return '<Organization {}>'.format(self.name)
+
+	def save(self):
+		db.session.add(self)
+		db.session.commit()
+		return
+
+	def delete(self):
+		db.session.delete(self)
+		return
+
 @login_manager.user_loader
 def load_user(id):
 	return User.query.get(int(id))

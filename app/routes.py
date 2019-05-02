@@ -1,8 +1,8 @@
 from app import app,db
 from flask import render_template, flash, redirect,request, url_for
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, CreateOrganizationForm
 from flask_login import current_user, login_user, logout_user,login_required
-from app.models import User
+from app.models import User, Organization
 
 @app.route("/")
 def index():
@@ -17,7 +17,7 @@ def home():
 def login():
 	if current_user.is_authenticated:
 		flash("You are logged on as {}".format(current_user.username))
-		return redirect(url_for("create_company"))
+		return redirect(url_for("create_org"))
 	
 	form = LoginForm()
 	if request.method=="GET":
@@ -43,11 +43,18 @@ def logout():
 		flash("You are logged out sucessfully!")
 		return redirect(url_for('index'))
 
-@app.route("/create/company",methods=["GET"])
+@app.route("/create/org",methods=["GET","POST"])
 @login_required
-def create_company():
-	return render_template("createCompany.html",user=current_user)
+def create_org():
+	form = CreateOrganizationForm()
+	if request.method == "GET":
+		return render_template("createCompany.html",user=current_user,form=form)
 
+	if form.validate_on_submit():
+		org = Organization(name=form.name.data,website=form.website.data,mission=form.mission.data)
+		flash("Company can be created {}".format(org.name))
+		return redirect(url_for('create_org'))
+	return render_template("createCompany.html",user=current_user,form=form)
 
 @app.route("/create/user",methods=["GET","POST"])
 def register_user():
@@ -55,7 +62,7 @@ def register_user():
 	if request.method=="GET":
 		return render_template("registration.html",title="Register User",form=form)
 
-	if form.validate_on_submit:
+	if form.validate_on_submit():
 		user = User(username=form.username.data)
 		already_present_user = User.query.filter_by(username=user.username).first()
 		if not already_present_user is None:
