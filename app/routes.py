@@ -9,6 +9,7 @@ def index():
 	return render_template("index.html")
 
 @app.route("/home")
+@login_required
 def home():
 	return render_template("home.html",user=current_user)
 
@@ -45,7 +46,7 @@ def logout():
 @app.route("/create/company",methods=["GET"])
 @login_required
 def create_company():
-	return render_template("createCompany.html")
+	return render_template("createCompany.html",user=current_user)
 
 
 @app.route("/create/user",methods=["GET","POST"])

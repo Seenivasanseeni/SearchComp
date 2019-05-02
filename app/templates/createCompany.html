@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1 class="text-center"> Create Company </h1>
   <div class="text-center">
-  	To <a href="{{url_for('home')}}">Home</a> <br />
-  	To <a href="{{url_for('logout')}}">Logout</a> <br />
-  </div>
+  	<h3> Welcome {{user.username}} </h3><br>
+	  <h1 class="text-center"> Create Company </h1>
+	  <div class="text-center">
+	  	To <a href="{{url_for('home')}}">Home</a> <br />
+	  	To <a href="{{url_for('logout')}}">Logout</a> <br />
+	  </div>
+	</div>
 {% endblock %}
