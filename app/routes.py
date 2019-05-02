@@ -9,10 +9,9 @@ def home():
 @app.route("/login",methods=["GET","POST"])
 def login():
 	form = LoginForm()
-	if request.method =="POST":
-		if form.validate_on_submit():
-			flash('Login Sucessful')
-			return redirect(url_for('create_company'))
+	if form.validate_on_submit():
+		flash('Login Sucessful')
+		return redirect(url_for('create_company'))
 	return render_template("login.html",form=form)
 
 
