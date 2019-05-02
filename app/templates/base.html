@@ -18,6 +18,19 @@
 <body>
 	<h1 class="text-center">SearchComp</h1>
 	<p class="text-center"> Search Companies by their Mission </p>
+	<div class="container text-center col-sm-4">
+		{% with messages = get_flashed_messages() %}
+
+			<div>
+					{% for message in messages %}
+					<div class="alert alert-info"> 
+						{{message}}
+					</div>
+					{% endfor %}
+			</div>
+
+		{% endwith %}
+	</div>
 	<div>
 		{% block content %}
 		{% endblock %}
