@@ -1,13 +1,15 @@
 from app import app
 from flask import render_template
+from app.forms import LoginForm
 
 @app.route("/")
-def hello():
+def home():
 	return render_template("home.html")
 
 @app.route("/login",methods=["GET","POST"])
 def login():
-	return render_template("login.html")
+	form = LoginForm()
+	return render_template("login.html",form=form)
 
 
 @app.route("/create/company",methods=["GET"])
