@@ -14,8 +14,7 @@ class RegistrationForm(LoginForm):
 
 class CreateOrganizationForm(FlaskForm):
 	name = StringField('name',validators=[DataRequired()])
-	website = StringField('website',validators=[DataRequired(),URL(message="This field needs to be valid URL!")])
-	mission= TextAreaField('mission',validators=[DataRequired()])
+	website = StringField('website',validators=[DataRequired()])
+	mission= StringField('mission',validators=[DataRequired()])
 	submit = SubmitField('CreateOrg')
-	def valid_name(self,field):
-		raise ValidationError("ValidationError")
+	

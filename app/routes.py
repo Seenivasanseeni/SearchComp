@@ -49,11 +49,13 @@ def create_org():
 	form = CreateOrganizationForm()
 	if request.method == "GET":
 		return render_template("createCompany.html",user=current_user,form=form)
-
 	if form.validate_on_submit():
 		org = Organization(name=form.name.data,website=form.website.data,mission=form.mission.data)
-		flash("Company can be created {}".format(org.name))
-		return redirect(url_for('create_org'))
+		if org.exists():
+			flash("Company with that name already exists")
+		else:
+			org.save()		
+			flash("Organization created for {}".format(org.name))
 	return render_template("createCompany.html",user=current_user,form=form)
 
 @app.route("/create/user",methods=["GET","POST"])

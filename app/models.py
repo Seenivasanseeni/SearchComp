@@ -45,6 +45,11 @@ class Organization(db.Model):
 		db.session.delete(self)
 		return
 
+	def exists(self):
+		if Organization.query.filter_by(name=self.name).first() is None:
+			return False
+		return True
+
 @login_manager.user_loader
 def load_user(id):
 	return User.query.get(int(id))
