@@ -48,7 +48,7 @@ def logout():
 def create_org():
 	form = CreateOrganizationForm()
 	if request.method == "GET":
-		return render_template("createCompany.html",user=current_user,form=form)
+		return render_template("createOrganization.html",user=current_user,form=form)
 	if form.validate_on_submit():
 		org = Organization(name=form.name.data,website=form.website.data,mission=form.mission.data)
 		if org.exists():
@@ -56,7 +56,7 @@ def create_org():
 		else:
 			org.save()		
 			flash("Organization created for {}".format(org.name))
-	return render_template("createCompany.html",user=current_user,form=form)
+	return render_template("createOrganization.html",user=current_user,form=form)
 
 @app.route("/create/user",methods=["GET","POST"])
 def register_user():
