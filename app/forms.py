@@ -17,4 +17,7 @@ class CreateOrganizationForm(FlaskForm):
 	website = StringField('website',validators=[DataRequired()])
 	mission= StringField('mission',validators=[DataRequired()])
 	submit = SubmitField('CreateOrg')
-	
+
+class  SearchForm(FlaskForm):
+	mission= StringField('mission',validators=[DataRequired()])
+	submit = SubmitField('Search')	

@@ -1,9 +1,9 @@
 from app import app,db
-from flask import render_template, flash, redirect,request, url_for
-from app.forms import LoginForm, RegistrationForm, CreateOrganizationForm
+from flask import render_template, flash, redirect,request, url_for, jsonify
+from app.forms import LoginForm, RegistrationForm, CreateOrganizationForm, SearchForm
 from flask_login import current_user, login_user, logout_user,login_required
 from app.models import User, Organization
-
+from app.utils import searchMission
 @app.route("/")
 def index():
 	return render_template("index.html")
@@ -84,3 +84,12 @@ def register_user():
 			return redirect(url_for('login'))
 	return render_template("registration.html",form=form)
 
+#for searching organizations
+#more of a REST API but later
+@app.route('/search',methods=["GET","POST"])
+def searchHTML():
+	form = SearchForm()
+	if request.method == "GET":
+		return render_template('search.html',form=form)
+	result = searchMission(form.mission.data)
+	return render_template('search.html',form=form,result=result)

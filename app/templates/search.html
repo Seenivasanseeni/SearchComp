@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content%}
+	<form method="POST" class="container col-sm-5 text-center">
+		{{form.mission.label}}
+		{{form.mission}}
+		{{form.submit}}
+	</form>
+	<div class="container text-center">
+	{% if result is defined %}
+		<p> Found {{result["len"]}} organizations </p>
+		<ul class="list-group">
+		{% for org in result["orgs"] %}
+			<li class="list-group-item border rounded">
+				<p>
+					<span class="font-weight-bold">{{org.name}} </span
+					>
+					<a class="float-right font-italic" href="{{org.website}}">{{org.website}} </a>
+				</p>	
+				<p class="float-left"><b>Mission: </b>{{org.mission}} </p
+				>
+			</li>
+		{% endfor %} 
+		</ul>
+	{%endif%}
+	</div>
+{% endblock%}
