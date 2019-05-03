@@ -44,6 +44,11 @@ def logout():
 		flash("You are logged out sucessfully!")
 		return redirect(url_for('index'))
 
+#for errors
+@app.route("/create/company")
+def create_company():
+	return redirect(url_for('create_org'))
+
 @app.route("/create/org",methods=["GET","POST"])
 @login_required
 def create_org():
