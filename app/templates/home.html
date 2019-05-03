@@ -11,9 +11,12 @@
   	To <a href="{{url_for('logout')}}">Logout</a> <br />
   	<div class="container"> 
   		<h4>List of existing Organizations</h4>
-  		<ul>
+  		<ul class="list-group">
   			{% for org in orgs %}
-  				<li>{{org.name}} --- {{org.website}}</li>
+  				<li class="list-group-item">
+  				<span class="float-left">
+  				{{org.name}}</span>
+  				<span class="float-right font-italic"> {{org.website}}</span></li>
   			{% endfor%}
   		</ul>
   	</div>
