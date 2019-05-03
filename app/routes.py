@@ -57,6 +57,7 @@ def create_org():
 		else:
 			org.save()		
 			flash("Organization created for {}".format(org.name))
+			return redirect(url_for('home'))
 	return render_template("createOrganization.html",user=current_user,form=form)
 
 @app.route("/create/user",methods=["GET","POST"])
@@ -77,3 +78,4 @@ def register_user():
 			flash("User created successfully. You can login now")
 			return redirect(url_for('login'))
 	return render_template("registration.html",form=form)
+
