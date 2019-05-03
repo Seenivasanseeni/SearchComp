@@ -11,7 +11,8 @@ def index():
 @app.route("/home")
 @login_required
 def home():
-	return render_template("home.html",user=current_user)
+	orgs = Organization.query.all()
+	return render_template("home.html",user=current_user,orgs=orgs)
 
 @app.route("/login",methods=["GET","POST"])
 def login():

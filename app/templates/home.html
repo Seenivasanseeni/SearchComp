@@ -9,5 +9,14 @@
   	To <a href="{{url_for('create_org')}}">Create Organization</a> <br />
 
   	To <a href="{{url_for('logout')}}">Logout</a> <br />
+  	<div class="container"> 
+  		<h4>List of existing Organizations</h4>
+  		<ul>
+  			{% for org in orgs %}
+  				<li>{{org.name}} --- {{org.website}}</li>
+  			{% endfor%}
+  		</ul>
+  	</div>
+
  </div>
 {% endblock %}
